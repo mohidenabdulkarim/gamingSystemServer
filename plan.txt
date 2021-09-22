@@ -1,0 +1,44 @@
+user type [admin, employee]
+admin extra:
+reports
+can add and manage employees
+
+
+
+
+// auth
+// api/auth
+// api/auth/isLoggedIn
+// api/auth/register
+// api/auth/login
+
+//device
+// api/devices :GET => all devices
+// api/devices :POST => register new device
+// api/devices :DELETE => remove device
+// api/devices :PUT => update
+
+button frontend => /start backend start timer 
+
+start {
+    user who started
+    time started
+    type of device started
+    hourRate of device started
+    finished time
+
+
+
+}
+
+
+
+
+/*
+{
+id
+name
+type
+hourRate
+category
+*/
