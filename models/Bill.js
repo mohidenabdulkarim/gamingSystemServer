@@ -9,8 +9,14 @@ const BillShcema = mongoose.Schema({
   duration: {
     type: String,
   },
-  employee: User,
-  device: Device,
+  employee: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users",
+  },
+  device: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "devices",
+  },
 });
 
 const billModel = mongoose.model("bill", BillShcema);

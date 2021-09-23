@@ -1,8 +1,6 @@
-var util = require("util");
-var encoder = new util.TextEncoder("utf-8");
 const mongoose = require("mongoose");
 
-const DB = process.env.ONLINE_DB.replace("<password>", process.env.DB_PASSWORD);
+//
 
 mongoose
   .connect(
