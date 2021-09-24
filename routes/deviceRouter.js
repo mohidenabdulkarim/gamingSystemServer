@@ -11,4 +11,5 @@ router
   .get(deviceController.findDevice)
   .put(deviceController.editDevice)
   .delete(deviceController.deleteDevice);
+
 module.exports = router;

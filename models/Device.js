@@ -6,8 +6,8 @@ const DeviceShcema = mongoose.Schema({
     require: true,
   },
   type: {
-    type: String,
-    require: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "deviceType",
   },
   hourRate: {
     type: String,
