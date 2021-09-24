@@ -8,6 +8,20 @@ exports.getUsers = async (req, res) => {
   });
 };
 
+exports.editUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({
+      msg: "user been edited",
+      updatedUser: user,
+    });
+  } catch (err) {
+    res.status(400).json({
+      msg: err,
+    });
+  }
+};
+
 exports.createUser = async (req, res) => {
   const { name, username, role, password } = req.body;
   try {
