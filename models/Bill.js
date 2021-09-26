@@ -17,6 +17,10 @@ const BillShcema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "devices",
   },
+  playedTimeInMinutes: {
+    type: String,
+    require: true,
+  },
 });
 
 const billModel = mongoose.model("bill", BillShcema);

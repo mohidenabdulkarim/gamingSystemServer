@@ -43,7 +43,7 @@ exports.findDevice = async (req, res) => {
   try {
     const device = await Device.findOne({ id: req.params.id });
     res.status(200).json({
-      msg: "found the Device",
+      msg: "found the Device ",
       data: device,
     });
   } catch (err) {

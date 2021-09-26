@@ -11,6 +11,10 @@ const UserShcema = mongoose.Schema({
     unique: true,
     trim: true,
   },
+  email: {
+    type: String,
+    require: true,
+  },
   password: {
     type: String,
     require: true,
