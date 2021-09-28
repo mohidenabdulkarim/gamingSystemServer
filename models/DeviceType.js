@@ -5,6 +5,10 @@ const DeviceTypeSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
 const deviceTypeModel = mongoose.model("deviceType", DeviceTypeSchema);

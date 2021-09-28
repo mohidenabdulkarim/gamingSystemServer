@@ -2,11 +2,17 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 exports.getUsers = async (req, res) => {
-  const users = await User.find({});
-  res.status(200).json({
-    message: "all Uses",
-    data: users,
-  });
+  try {
+    const users = await User.find({});
+    return res.status(200).json({
+      message: "all Uses",
+      data: users,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      msg: err,
+    });
+  }
 };
 
 exports.editUser = async (req, res) => {
@@ -34,6 +40,23 @@ exports.editUser = async (req, res) => {
 //     return res.status(404).json(err);
 //   }
 // };
+exports.createByAdmin = async (req, res) => {
+  const { name, username, email, role } = req.body;
+  const checkUser = await User.findOne({ email });
+  if (checkUser) {
+    return res.status(400).json({ msg: "user is already exists" });
+  } else {
+    const hashPassword = await bcrypt.hash(req.body.password, 10);
+    const user = await User.create({
+      name,
+      username,
+      email,
+      hashPassword,
+      role,
+    });
+    return res.status(200).json({ msg: "created", user });
+  }
+};
 
 exports.saveUser = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
@@ -63,9 +86,24 @@ exports.saveUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    await User.findByIdAndDelete(req.params.id);
+    const user = await User.findByIdAndDelete(req.params.id);
     return res.status(200).json({
       msg: "deleted",
+      user: user,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      msg: err,
+    });
+  }
+};
+
+exports.getOneUser = async (req, res) => {
+  try {
+    const user = await User.findOne(req.params.id);
+    return res.status(200).json({
+      msg: "user been found",
+      data: user,
     });
   } catch (err) {
     return res.status(400).json({

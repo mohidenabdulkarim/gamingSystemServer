@@ -3,7 +3,6 @@ const DeviceType = require("../models/DeviceType");
 exports.getAll = async (req, res) => {
   try {
     const deviceTypes = await DeviceType.find({});
-
     return res.status(200).json({ msg: "all types", deviceTypes });
   } catch (err) {
     console.log(err);
@@ -12,9 +11,15 @@ exports.getAll = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  const { name } = req.body;
-  const deviceType = await DeviceType.create({ name });
-  return res.status(201).json({ msg: "Created", deviceType });
+  try {
+    const { name } = req.body;
+    const deviceType = await DeviceType.create({ name });
+    return res.status(200).json({ msg: "Created", deviceType });
+  } catch (err) {
+    return res.status(400).json({
+      msg: err,
+    });
+  }
 };
 
 exports.deleteDeviceType = async (req, res) => {

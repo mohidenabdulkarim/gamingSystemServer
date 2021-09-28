@@ -2,15 +2,21 @@ const Device = require("../models/Device");
 const DeviceType = require("../models/DeviceType");
 
 exports.getDevices = async (req, res) => {
-  const devices = await Device.find({}).populate({
-    path: "type",
-    select: "name",
-    model: DeviceType,
-  });
-  res.status(200).json({
-    message: "all Devices",
-    data: devices,
-  });
+  try {
+    const devices = await Device.find({}).populate({
+      path: "type",
+      select: "name",
+      model: DeviceType,
+    });
+    return res.status(200).json({
+      message: "all Devices",
+      data: devices,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      msg: err,
+    });
+  }
 };
 
 exports.editDevice = async (req, res) => {

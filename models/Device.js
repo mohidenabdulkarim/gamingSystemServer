@@ -5,6 +5,10 @@ const DeviceShcema = mongoose.Schema({
     type: String,
     require: true,
   },
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
   type: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "deviceType",

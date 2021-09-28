@@ -21,6 +21,10 @@ const BillShcema = mongoose.Schema({
     type: String,
     require: true,
   },
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
 const billModel = mongoose.model("bill", BillShcema);
